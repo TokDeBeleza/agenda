@@ -1,0 +1,26 @@
+:root {
+  --text-primary: #1b4965;
+  --text-dark: #0b1d28;
+  --baby-powder: #fafdff;
+  --link-primary: #5fa8d3;
+  --input-primary: #cae9ff;
+  --input-secondary: #cae9ff;
+  --powder-blue: #bee9e8;
+  --white: #ffff;
+  --red: #ff0000;
+  --error-background: #fdeeec;
+}
+
+h1 {
+  color: var(--text-primary);
+}
+
+a {
+  color: var(--link-primary);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+a:is(:hover, :active) {
+  color: var(--text-dark);
+}
