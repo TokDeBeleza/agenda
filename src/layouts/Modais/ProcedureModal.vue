@@ -9,7 +9,6 @@
       <procedure-form :procedure="procedure" :observation="observation" @submit="handleSubmit">
         <slot />
       </procedure-form>
-      <base-button @click="handleSubmit">Teste</base-button>
     </div>
   </base-modal>
 </template>
