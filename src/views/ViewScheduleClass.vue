@@ -126,9 +126,6 @@ const handleModal = async (key) => {
   selectedSchedule.value = key;
 };
 
-onMounted(() => {
-  console.log(userStore.user);
-});
 </script>
 
 <style lang="less" scoped>

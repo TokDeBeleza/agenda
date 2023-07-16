@@ -42,7 +42,6 @@ const handleSubmit = async (data) => {
     MESSAGE: ${response.message}`);
 
   const { body } = response;
-  console.log(body);
 
   if (!body.complemented_data)
     return router.push({ name: USER_COMPLEMENT_DATA.NAME, params: { id: body.id } });
