@@ -1,6 +1,12 @@
 <template>
   <section id="mobile-schedule">
-    <VDatePicker v-model="selectedDay" locale="pt" :attributes="attributes" :popover="false">
+    <VDatePicker
+      v-model="selectedDay"
+      locale="pt"
+      :min-date="minDate"
+      :attributes="attributes"
+      :popover="false"
+    >
       <template #default="{ togglePopover, inputValue, inputEvents }">
         <base-input readonly @onClick="() => togglePopover()" :value="inputValue" :on="inputEvents">
           <template #icon>
@@ -34,7 +40,8 @@ import { ref, watch } from 'vue';
 
 const props = defineProps({
   attributes: Array,
-  timeList: Array
+  timeList: Array,
+  minDate: Date
 });
 
 const selectedDay = ref(new Date());

@@ -8,8 +8,8 @@ export const LOGIN = {
 };
 
 export const SCHEDULE_CLASS = {
-  NAME: 'scheduleClass',
-  PATH: '/schedule-class/:id'
+  NAME: 'scheduleProcedure',
+  PATH: '/schedule-procedure/:id'
 };
 
 export default {

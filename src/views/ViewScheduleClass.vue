@@ -1,6 +1,11 @@
 <template>
   <div id="view-schedule-class">
-    <schedule-mobile :attributes="attributesProp" :time-list="classes" @change="handleChangeDay">
+    <schedule-mobile
+      :attributes="attributesProp"
+      :min-date="new Date()"
+      :time-list="classes"
+      @change="handleChangeDay"
+    >
       <template #head>
         <span></span>
       </template>
