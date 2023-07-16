@@ -48,8 +48,8 @@ moment.locale('pt');
 
 const userStore = useUserStore();
 const route = useRoute();
-const openSchedule = useSchedule('openAppointments', route.params.id);
-const closeSchedule = useSchedule('closeAppointments', route.params.id);
+const openSchedule = useSchedule('openAppointments', userStore.user.id);
+const closeSchedule = useSchedule('closeAppointments', userStore.user.id);
 
 const selectedDay = ref(null);
 const selectedAppointment = reactive({});
@@ -120,7 +120,7 @@ const handleCancel = (key) => {
 };
 
 const isScheduled = (key) => {
-  return formattedClasses.value[key]?.day;
+  return formattedClasses.value[key]?.name;
 };
 </script>
 

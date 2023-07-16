@@ -14,8 +14,8 @@ export const TEACHER_DETAILS = {
 };
 
 export const CREATE_CLASS = {
-  NAME: 'createClass',
-  PATH: '/create-class/:id'
+  NAME: 'createProcedure',
+  PATH: '/create-procedure/:id'
 };
 
 export default {

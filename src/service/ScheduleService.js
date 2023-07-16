@@ -21,6 +21,8 @@ export default class ScheduleService extends BaseService {
   }
 
   async getClasses(day) {
+    if (!this.teacherId) return;
+
     return await getDocs(
       query(
         collection(...this.#factoryCollection()),
@@ -33,6 +35,8 @@ export default class ScheduleService extends BaseService {
   }
 
   async getNextClasses(day) {
+    if (!this.teacherId) return;
+
     return await getDocs(
       query(
         collection(...this.#factoryCollection()),
@@ -44,6 +48,8 @@ export default class ScheduleService extends BaseService {
   }
 
   async postAppointments(payload) {
+    if (!this.teacherId) return;
+
     const ref = collection(...this.#factoryCollection());
     try {
       return payload.forEach(async (document) => {
@@ -55,6 +61,8 @@ export default class ScheduleService extends BaseService {
   }
 
   async deleteAppointments(item) {
+    if (!this.teacherId) return;
+
     try {
       return await deleteDoc(doc(...this.#factoryCollection(item)))
         .then(this.success)
@@ -65,6 +73,8 @@ export default class ScheduleService extends BaseService {
   }
 
   async getAppointments() {
+    if (!this.teacherId) return;
+
     return await getDocs(collection(...this.#factoryCollection()))
       .then(({ docs }) => this.success(docs.map((doc) => doc.data())))
       .catch(this.failure);

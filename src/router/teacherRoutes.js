@@ -10,9 +10,9 @@ const privateRoutes = [
     name: _.CREATE_CLASS.NAME,
     component: ViewCreateClass,
     beforeEnter: ({ params }) => {
-     /*  const userStore = useUserStore();
+      const userStore = useUserStore();
       if (!params?.id || userStore?.user?.type != enumUserType.teacher) return { name: LOGIN.NAME };
-      return true; */
+      return true; 
     }
   }
 ];

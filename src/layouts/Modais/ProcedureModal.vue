@@ -16,7 +16,6 @@
 <script setup>
 import ProcedureForm from '@/layouts/Forms/procedureForm.vue';
 import { LOGIN } from '@/consts/publicRoutes.js';
-import { TEACHER_LIST } from '@/consts/privateRoutes.js';
 import { useIsAuthenticate } from '@/composables/user';
 import { useRouter } from 'vue-router';
 import { useRoute } from 'vue-router';
@@ -25,7 +24,7 @@ const router = useRouter();
 const route = useRoute();
 const props = defineProps({
   procedure: {
-    default: 1,
+    default: 0,
     type: Number
   },
   observation: {
@@ -45,7 +44,7 @@ const handleSubmit = async (v) => {
       }
     });
   }
-  ///return emits('submit', v);
+  return emits('submit', v);
 };
 </script>
 

@@ -22,11 +22,15 @@
 </template>
 
 <script setup>
-import { reactive, toRaw, ref } from 'vue';
+import { reactive, toRaw, ref, onBeforeMount } from 'vue';
+import TeacherService from '../../service/TeacherService';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
 
 const props = defineProps({
   procedure: {
-    default: 1,
+    default: 0,
     type: Number
   },
   observation: {
@@ -51,6 +55,15 @@ const handleSubmit = () => {
 };
 
 const emit = defineEmits(['submit']);
+
+onBeforeMount(async () => {
+  const teacherService = new TeacherService();
+  const teacherInfos = await teacherService.get(route.params.id);
+  options.value = teacherInfos.body.procedures.map((item, index) => ({
+    value: index,
+    label: item
+  }));
+});
 </script>
 
 <style lang="less">

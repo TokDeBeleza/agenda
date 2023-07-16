@@ -7,18 +7,24 @@
         </div>
       </RouterLink>
 
-      <RouterLink to="/" @click="signOut" class="sign-out" v-if="route.meta.requireAuth">
+      <RouterLink to="/" @click="signOut" class="sign-out" v-if="userStore.user.id">
         <label>Sair</label>
         <img src="@/assets/back-icon.svg" />
       </RouterLink>
+
+      <a v-else-if="!userStore.user.id && route.path != '/'" @click="goToLogin" class="sign-out">
+        <label>Entrar</label>
+        <img src="@/assets/back-icon.svg" />
+      </a>
     </div>
   </nav>
 </template>
 
 <script setup>
 import { useUserStore } from '@/stores/UserStore.js';
-import { REGISTER } from '@/consts/publicRoutes.js';
+import { LOGIN } from '@/consts/publicRoutes.js';
 import { useRouter, useRoute } from 'vue-router';
+import { ref } from 'vue';
 
 const userStore = useUserStore();
 const router = useRouter();
@@ -26,6 +32,14 @@ const route = useRoute();
 
 const signOut = async () => {
   return await userStore.signOut();
+};
+const goToLogin = async () => {
+  router.push({
+    name: LOGIN.NAME,
+    query: {
+      company_id: route.params.id
+    }
+  });
 };
 </script>
 
@@ -86,6 +100,9 @@ const signOut = async () => {
     }
   }
 
+  a{
+    cursor: pointer;
+  }
   .sign-out {
     cursor: pointer;
     display: flex;

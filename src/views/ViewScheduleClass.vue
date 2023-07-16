@@ -22,7 +22,7 @@
 <script setup>
 import ScheduleMobile from '@/layouts/ScheduleMobile.vue';
 import ProcedureModal from '@/layouts/Modais/ProcedureModal.vue';
-import { ref, reactive } from 'vue';
+import { ref, reactive, onBeforeMount, onMounted } from 'vue';
 import { useUserStore } from '@/stores/UserStore';
 import { useSchedule } from '../composables/schedule.js';
 import { useRoute } from 'vue-router';
@@ -31,9 +31,9 @@ const route = useRoute();
 const userStore = useUserStore();
 const teacherOpenSchedule = useSchedule('openAppointments', route.params.id);
 const teacherCloseSchedule = useSchedule('closeAppointments', route.params.id);
-const studentCloseSchedule = useSchedule('closeAppointments', 'PGHkG6ZOLLPQL3RCJzhDHMNZUVx1');
+const studentCloseSchedule = useSchedule('closeAppointments', userStore.user.id);
 
-const classes = reactive([]);
+let classes = reactive([]);
 const procedureModal = ref(false);
 const selectedSchedule = ref(null);
 
@@ -78,8 +78,9 @@ const handleSave = async (procedure) => {
       handleTeacherAppointment(key, procedure),
       handleStudentAppointment(key, procedure)
     ]);
-    classes.splice(key, 1);
+    classes = [];
     classes.push(payload);
+
     return handleModal();
   } catch (e) {
     console.log(e);
@@ -124,6 +125,10 @@ const handleModal = async (key) => {
   procedureModal.value = !procedureModal.value;
   selectedSchedule.value = key;
 };
+
+onMounted(() => {
+  console.log(userStore.user);
+});
 </script>
 
 <style lang="less" scoped>

@@ -17,27 +17,27 @@ export function useSchedule(schedule, id) {
   const saveAppointments = async (payload) => {
     await scheduleService.postAppointments(payload);
     appointments.value.push(...payload);
-    return appointments.value
+    return appointments.value;
   };
   const deleteAppointments = async (item) => {
     return await scheduleService.deleteAppointments(item);
   };
   const getAppointments = async () => {
-    const { body } = await scheduleService.getAppointments();
-    return parseDates(body);
+    const resp = await scheduleService.getAppointments();
+    return parseDates(resp?.body);
   };
 
   const getHourClasses = async (day) => {
-    const { body } = await scheduleService.getClasses(day);
-    return parseDates(body);
+    const resp = await scheduleService.getClasses(day);
+    return parseDates(resp?.body);
   };
 
   const getNextClasses = async (day) => {
-    const { body } = await scheduleService.getNextClasses(day);
-    return parseDates(body);
+    const resp = await scheduleService.getNextClasses(day);
+    return parseDates(resp?.body);
   };
 
-  const parseDates = (array) => {
+  const parseDates = (array = []) => {
     return array.map((item) => {
       item.date = new Date(item.date.seconds * 1000);
       return item;
